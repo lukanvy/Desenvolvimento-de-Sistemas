@@ -7,12 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supervisor extends Model
 {
-	use HasFactory;
+    use HasFactory;
 
-	// Adicione campos fillable conforme necessário, por exemplo:
-	// protected $fillable = ['nome', 'email', 'telefone'];
+    protected $table = 'supervisores';
 
-	// Se a tabela tiver nome diferente do plural English (supervisors), defina explicitamente:
-	// protected $table = 'supervisores';
+    protected $fillable = [
+        'codigo',
+        'nome',
+        'cargo',
+        'area_formacao',
+        'area_atuacao',
+        'tarefas',
+        'reparticao_id',
+    ];
+
+    public function reparticao()
+    {
+        return $this->belongsTo(Reparticao::class);
+    }
+
+  
+    public function estagiarios()
+    {
+        return $this->hasMany(Estagiario::class);
+    }
+
+   
+    public function avaliacoes()
+    {
+        return $this->hasMany(Avaliacao::class);
+    }
 }
-

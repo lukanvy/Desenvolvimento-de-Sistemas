@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Estagiário</title>
-    @vite(['resources/css/estagiario.css', 'resources/js/app.js'])
+    @vite(['resources/css/estilo.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
@@ -18,6 +18,7 @@
             </div>
             <h5 class="sidebar-title">Gestão de Estagiários</h5>
         </div>
+
         <nav class="sidebar-nav">
             <a href="{{ route('dashboard') }}" class="sidebar-link active">
                 <i class="bi bi-house-door me-3"></i> Dashboard
@@ -52,7 +53,7 @@
                 <h1 class="page-title">Cadastro de Estagiário</h1>
                 <p class="page-subtitle">Preencha os dados do novo estagiário</p>
             </div>
-            
+
             <!-- Dropdown Admin -->
             <div class="dropdown-container">
                 <button class="admin-dropdown-btn">
@@ -60,7 +61,7 @@
                     <span>Admin</span>
                     <i class="bi bi-caret-down-fill text-sm"></i>
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu hidden">
                     <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Perfil</a></li>
                     <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Configurações</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -102,13 +103,14 @@
                             <input type="text" name="nome_completo" class="form-input with-icon" placeholder="Digite o nome completo" required>
                         </div>
                     </div>
+
                     <div class="form-group small">
                         <label class="form-label">Ano</label>
                         <input type="number" name="ano" class="form-input text-center" placeholder="2025" min="2020" max="2030" required>
                     </div>
                 </div>
 
-                
+                <!-- Curso, Email, Telefone, Supervisor, BI -->
                 <div class="form-grid">
                     <div class="form-group medium">
                         <label class="form-label">Curso</label>
@@ -117,6 +119,7 @@
                             <input type="text" name="curso" class="form-input with-icon" placeholder="Nome do curso" required>
                         </div>
                     </div>
+
                     <div class="form-group medium">
                         <label class="form-label">Email</label>
                         <div class="input-container">
@@ -124,6 +127,7 @@
                             <input type="email" name="email" class="form-input with-icon" placeholder="email@gmail.com" required>
                         </div>
                     </div>
+
                     <div class="form-group medium">
                         <label class="form-label">Telefone</label>
                         <div class="input-container">
@@ -131,11 +135,20 @@
                             <input type="text" name="telefone" class="form-input with-icon" placeholder="+258 8X XXX XXX" required>
                         </div>
                     </div>
+
                     <div class="form-group small">
                         <label class="form-label">Supervisor</label>
                         <div class="input-container">
                             <i class="bi bi-person-badge input-icon"></i>
                             <input type="text" name="supervisor" class="form-input with-icon" placeholder="Nome" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group small">
+                        <label class="form-label">BI</label>
+                        <div class="input-container">
+                            <i class="bi bi-credit-card-2-front input-icon"></i>
+                            <input type="text" name="bi" class="form-input with-icon" placeholder="Número do BI" required>
                         </div>
                     </div>
                 </div>
@@ -149,6 +162,7 @@
                             <input type="text" name="alocacao" class="form-input with-icon" placeholder="Departamento/Setor" required>
                         </div>
                     </div>
+
                     <div class="form-group small">
                         <label class="form-label">Data Início</label>
                         <div class="input-container">
@@ -156,6 +170,7 @@
                             <input type="date" name="data_inicio" class="form-input with-icon" required>
                         </div>
                     </div>
+
                     <div class="form-group small">
                         <label class="form-label">Data Fim</label>
                         <div class="input-container">
@@ -163,6 +178,7 @@
                             <input type="date" name="data_fim" class="form-input with-icon" required>
                         </div>
                     </div>
+
                     <div class="form-group medium">
                         <label class="form-label">Carta (PDF/DOC)</label>
                         <div class="input-container">
@@ -196,15 +212,16 @@
         </div>
     </main>
 
+    <!-- Script dropdown -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dropdownButton = document.querySelector('.admin-dropdown-btn');
             const dropdownMenu = document.querySelector('.dropdown-menu');
-            
+
             dropdownButton.addEventListener('click', function() {
                 dropdownMenu.classList.toggle('hidden');
             });
-            
+
             document.addEventListener('click', function(event) {
                 if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                     dropdownMenu.classList.add('hidden');
@@ -212,6 +229,5 @@
             });
         });
     </script>
-
 </body>
 </html>

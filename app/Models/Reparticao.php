@@ -5,27 +5,33 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Departamento extends Model
+class Reparticao extends Model
 {
     use HasFactory;
 
-    protected $table = 'departamentos';
+    protected $table = 'reparticoes';
 
     protected $fillable = [
         'codigo',
         'nome',
         'abreviatura',
         'descricao',
-        'email',
+        'departamento_id',
     ];
 
-   
-    public function reparticoes()
+  
+    public function departamento()
     {
-        return $this->hasMany(Reparticao::class);
+        return $this->belongsTo(Departamento::class);
     }
 
    
+    public function supervisores()
+    {
+        return $this->hasMany(Supervisor::class);
+    }
+
+    
     public function estagiarios()
     {
         return $this->hasMany(Estagiario::class);

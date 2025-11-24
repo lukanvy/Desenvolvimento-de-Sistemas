@@ -4,26 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Estagiario;
+use App\Models\Supervisor;
 
 
 class EstagiarioController extends Controller
 {
     
 
-     public function index()
-    {
-       
-        
-        
-        $estagiarios = Estagiario::orderBy('created_at', 'desc')->paginate(10);
-        
-        return view('estagiario.index', compact('estagiarios'));
-    }
-    
-    public function create()
-    {
-        return view('estagiario.form2');
-    }
+    /* public function index()
+    { $estagiarios = Estagiario::orderBy('created_at', 'desc')->paginate(10);return view('estagiario.index', compact('estagiarios')); }
+>*/
+public function index()
+{
+    $estagiarios = Estagiario::with('supervisor')->paginate(10);
+
+    return view('estagiario.index', compact('estagiarios'));
+}
+
+
+  public function create()
+{
+    $supervisores = Supervisor::orderBy('nome')->get(); // pegar supervisores para o select
+    return view('estagiario.create', compact('supervisores')); // passar a variável correta
+}
+
 
     
     public function store(Request $request)
@@ -44,11 +48,11 @@ class EstagiarioController extends Controller
         ]);
 
         Estagiario::create($validated);
-
+    
         return redirect()->route('estagiario.index')->with('success', 'Estagiário cadastrado com sucesso!');
     }
 
-    
+
     public function show($id)
     {
         $estagiario = Estagiario::findOrFail($id);
@@ -59,7 +63,9 @@ class EstagiarioController extends Controller
     public function edit($id)
     {
         $estagiario = Estagiario::findOrFail($id);
-        return view('estagiario.editar', compact('estagiario'));
+    $supervisores = Supervisor::orderBy('nome')->get();
+
+    return view('estagiario.edit', compact('estagiario', 'supervisores'));
     }
 
     /**

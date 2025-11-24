@@ -41,7 +41,7 @@ html {
 }
 
 .sidebar-link.active {
-  @apply bg-blue-900/50 border-blue-300 shadow-inner;
+  @apply bg-blue-500 border-blue-300 shadow-inner;
 }
 
 /* === CONTEÚDO PRINCIPAL === */
@@ -201,8 +201,12 @@ html {
 }
 
 .btn-submit {
-  @apply btn-base bg-green-600 text-white hover:bg-green-700 hover:shadow-xl focus:ring-2 focus:ring-green-300;
+  @apply bg-green-600 text-white hover:bg-green-700 hover:shadow-xl
+         focus:ring-2 focus:ring-green-300 px-4 py-2 text-sm w-auto rounded-full
+         relative -top-9;
 }
+
+
 
 /* === SCROLL PERSONALIZADO === */
 ::-webkit-scrollbar {

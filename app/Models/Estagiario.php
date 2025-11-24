@@ -29,12 +29,12 @@ class Estagiario extends Model
     ];
 
    
-    public function supervisor()
-    {
-        return $this->belongsTo(Supervisor::class);
-    }
+   public function supervisor()
+{
+    return $this->belongsTo(Supervisor::class, 'supervisor_id');
+}
 
-    
+
     public function departamento()
     {
         return $this->belongsTo(Departamento::class);
@@ -57,4 +57,7 @@ class Estagiario extends Model
     {
         return $this->hasMany(Documento::class);
     }
+
+    public function curso() { return $this->belongsTo(Curso::class); }
+
 }

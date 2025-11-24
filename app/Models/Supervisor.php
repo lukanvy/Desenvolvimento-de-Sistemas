@@ -26,13 +26,11 @@ class Supervisor extends Model
         return $this->belongsTo(Reparticao::class);
     }
 
-  
-    public function estagiarios()
-    {
-        return $this->hasMany(Estagiario::class);
-    }
+  public function estagiarios()
+{
+    return $this->hasMany(Estagiario::class, 'supervisor_id');
+}
 
-   
     public function avaliacoes()
     {
         return $this->hasMany(Avaliacao::class);

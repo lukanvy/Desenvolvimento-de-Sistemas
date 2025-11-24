@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Departamento;
+use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
 {
-    // Lista todos os departamentos
     public function index()
     {
-        // Recupera todos os departamentos do banco
-        $departamentos = Departamento::all();
-
-        // Retorna a view com os dados
+        $departamentos = Departamento::orderBy('nome')->paginate(10);
         return view('departamentos.index', compact('departamentos'));
     }
 
-    // Outros métodos opcionais para CRUD
     public function create()
     {
         return view('departamentos.create');
@@ -25,8 +20,23 @@ class DepartamentoController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'codigo' => 'required|unique:departamentos,codigo',
+            'nome' => 'required',
+            'abreviatura' => 'required',
+            'descricao' => 'nullable',
+            'email' => 'nullable|email',
+        ]);
+
         Departamento::create($request->all());
-        return redirect()->route('departamento.index');
+
+        return redirect()->route('departamentos.index')
+                         ->with('success', 'Departamento criado com sucesso!');
+    }
+
+    public function show(Departamento $departamento)
+    {
+        return view('departamentos.show', compact('departamento'));
     }
 
     public function edit(Departamento $departamento)
@@ -36,13 +46,25 @@ class DepartamentoController extends Controller
 
     public function update(Request $request, Departamento $departamento)
     {
+        $request->validate([
+            'codigo' => 'required|unique:departamentos,codigo,' . $departamento->id,
+            'nome' => 'required',
+            'abreviatura' => 'required',
+            'descricao' => 'nullable',
+            'email' => 'nullable|email',
+        ]);
+
         $departamento->update($request->all());
-        return redirect()->route('departamento.index');
+
+        return redirect()->route('departamentos.index')
+                         ->with('success', 'Departamento atualizado com sucesso!');
     }
 
     public function destroy(Departamento $departamento)
     {
         $departamento->delete();
-        return redirect()->route('departamento.index');
+
+        return redirect()->route('departamentos.index')
+                         ->with('success', 'Departamento apagado com sucesso!');
     }
 }

@@ -17,7 +17,7 @@ a {
 
 /* === SIDEBAR === */
 .sidebar {
-  @apply w-64 bg-gradient-to-b from-blue-700 via-blue-800 to-blue-900 text-white fixed h-screen p-6 shadow-xl flex flex-col justify-between z-40;
+  @apply w-64 bg-gradient-to-b from-blue-400 via-blue-500 to-blue-500 text-white fixed h-screen p-6 shadow-xl flex flex-col justify-between z-40;
 }
 
 .sidebar-header {
@@ -29,7 +29,7 @@ a {
 }
 
 .logo-icon {
-  @apply text-blue-700 text-3xl;
+  @apply text-blue-400 text-3xl;
 }
 
 .sidebar-title {
@@ -45,7 +45,7 @@ a {
 }
 
 .sidebar-link.active {
-  @apply bg-blue-900/60 border-blue-400 shadow-inner;
+  @apply bg-blue-500 border-blue-400 shadow-inner;
 }
 
 /* === CONTEÚDO PRINCIPAL === */
@@ -72,7 +72,7 @@ a {
 }
 
 .admin-dropdown-btn {
-  @apply bg-blue-600 text-white font-semibold px-4 py-2.5 rounded-xl shadow-md flex items-center space-x-2 transition-all duration-300 hover:bg-blue-700 hover:shadow-lg focus:ring-2 focus:ring-blue-400 focus:ring-offset-2;
+  @apply bg-blue-500 text-white font-semibold px-4 py-2.5 rounded-xl shadow-md flex items-center space-x-2 transition-all duration-300 hover:bg-blue-700 hover:shadow-lg focus:ring-2 focus:ring-blue-400 focus:ring-offset-2;
 }
 
 .dropdown-menu {
@@ -84,7 +84,7 @@ a {
 }
 
 .dropdown-item {
-  @apply flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-150;
+  @apply flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-400 transition duration-150;
 }
 
 .dropdown-item.logout {
@@ -206,8 +206,10 @@ a {
 }
 
 .btn-submit {
-  @apply btn-base bg-green-600 text-white hover:bg-green-700 hover:shadow-xl focus:ring-2 focus:ring-green-300;
+  @apply bg-green-600 text-white hover:bg-green-700 hover:shadow-xl 
+         focus:ring-2 focus:ring-green-300 px-4 py-2 text-sm w-auto;
 }
+
 
 /* === SCROLL PERSONALIZADO === */
 ::-webkit-scrollbar {
@@ -222,4 +224,6 @@ a {
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(5px); }
   100% { opacity: 1; transform: translateY(0); }
+
+  
 }

@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+
      *
      * @var list<string>
      */
@@ -21,11 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
+
      * @var list<string>
      */
     protected $hidden = [
@@ -45,4 +45,21 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isAdmin() {
+    return $this->role === 'admin';
 }
+
+    public function isSupervisor() {
+    return $this->role === 'supervisor';
+}
+
+    public function isEstagiario() {
+    return $this->role === 'estagiario';
+}
+
+    public function isSecretaria() {
+    return $this->role === 'secretaria';
+}   
+}
+

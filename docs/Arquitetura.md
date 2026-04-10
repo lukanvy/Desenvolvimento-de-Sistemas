@@ -31,3 +31,5 @@ Diagrama desenhado (imagem)
  
  Justificativa das escolhas
   Escolhi essa arquitectura porque ela resolve facilmente o registo e visualizacao dos estagiariose supervisores. Tenho dominio da arquitectura. E possivel aplicar no tempo estabelecido para entrega. Mitigacao de risco identificado eh adicao de modulos simples e praticos.
+
+  

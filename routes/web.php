@@ -9,6 +9,8 @@ use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\DocumentoController;
 use App\Models\Estagiario;
+use App\Http\Controllers\AuthController;
+
 
 
 Route::get('/', [EstagiarioController::class, 'dashboard'])->name('dashboard');
@@ -64,3 +66,16 @@ Route::prefix('relatorios')->group(function () {
 
 Route::get('/configuracoes', function () { return 'Configurações'; })->name('configuracoes.index');
 Route::get('/logout', function () { return 'Logout'; })->name('logout');
+
+//login
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/admin/dashboard', fn() => view('admin.dashboard'));
+    Route::get('/supervisor/dashboard', fn() => view('supervisor.dashboard'));
+    Route::get('/secretaria/dashboard', fn() => view('welcome'));
+    Route::get('/estagiario/dashboard', fn() => view('estagiario.dashboard'));
+
+});
